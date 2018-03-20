@@ -1,0 +1,51 @@
+
+
+.jumbotron-fluid {
+    background-image: url("images/spacetrain-bg.jpeg");
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+h1 {
+    color: #fff;
+}
+
+
+.col-md-12.spaceschedule {
+    background-color: #eeeeee;
+    padding: 0;
+}
+
+.train-header {
+    background-color: #bebebe;
+}
+
+.form-data {
+    background-color: #faf9f9;
+}
+
+.form-bg {
+    background-color: #eeeeee;
+}
+
+.form-group {
+    margin: 40px;
+}
+
+.btn {
+    margin-left: 40px;
+    margin-bottom: 60px;
+    background-color: aquamarine;
+    color: purple;
+    padding: 10px 25px;
+}
+
+.form-title {
+    background-color: #bebebe;
+    margin: 0;
+}
+
+.form-control {
+    border: 0px;
+    padding: 10px;
+}
