@@ -23,54 +23,27 @@ $("#add-user").on("click", function(event) {
   var firstTrain = $("#first-train-input").val().trim();
   var trainFreq = $("#train-freq-input").val().trim();
 
+  
+
   var newTrain = {
     name: trainName,
     destination: trainDestination,
     first: firstTrain,
     frequency: trainFreq
+   
+    
 };
 
-
-    var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-    console.log(firstTrainConverted);
-
-    var currentTime = moment ();
-    console.log("current time: " + moment(currentTime).format("hh:mm"));
-
-    var difference = moment().diff(moment(firstTrainConverted), "minutes");
-    console.log("difference in time: " + difference);
-
-    var tRemainder = difference % trainFreq;
-    var minNextTrain = trainFreq - tRemainder;
-
-    var nextTrain = moment().add(minNextTrain).format("hh:mm");
-    var nextTrain = moment().add()
-
-    console.log("arrival time " + moment(nextTrain).format("hh:mm"));
-    console.log("minutes till next " + minNextTrain);
-    console.log(trainFreq);
-    console.log(tRemainder);
-    console.log("next train " + nextTrain);
-    
-    
-  // local object
- 
-
 firebase.database().ref().push(newTrain);
+
 
   console.log(newTrain.name);
   console.log(newTrain.destination);
   console.log(newTrain.first);
   console.log(newTrain.frequency);
 
-  $("#trainname-input").val("");
-  $("#destination-input").val("");
-  $("#first-train-input").val("");
-  $("#train-freq-input").val("");
-
 });
 
-// push data to firebase
 
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
@@ -80,12 +53,25 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var trainDestination = childSnapshot.val().destination;
   var firstTrain = childSnapshot.val().first;
   var trainFreq = childSnapshot.val().frequency;
-//   var minNextTrain = childSnapShot.val();
+ 
+var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
 
+var currentTime = moment();
+
+var difference = moment().diff(moment(firstTrainConverted), "minutes");
+var differenceConverted = moment(difference).format("hh:mm");
+
+
+var tRemainder = difference % trainFreq;
+
+var minAway = trainFreq - tRemainder;
+
+var nextTrain1 = moment().add(minAway, "minutes");
+var nextTrainFormatted = moment(nextTrain1).format("hh:mm");
 
 //   append HTML
 
-  $("#space-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainFreq + "</td><td>" + firstTrain + "</td>");
+  $("#space-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" + trainFreq + "</td><td>" +  nextTrainFormatted + "</td><td>" + minAway + "</td></tr>");
 
 });
 
